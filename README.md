@@ -1,36 +1,17 @@
-# PDF Querying with GPT Response Generator
+# PDF Text and Table Embedding with Multimodal RAG
 
-This project allows querying PDFs for specific information and generating coherent responses using GPT. The system processes multimodal queries by combining both table and text embeddings to enhance the retrieval process. The final response is generated using a GPT-based model that is fine-tuned to produce meaningful and coherent answers based on the retrieved results.
-
-## Features
-
-- **Multimodal Querying**: Combines embeddings for table data and text data to perform a robust query on the PDF.
-- **GPT-Generated Responses**: Utilizes GPT for generating coherent and contextually relevant answers.
-- **Dynamic Content Management**: Handles long content, truncating where necessary, to avoid token overflow issues.
-- **Result Merging**: Merges table and text results, ranks them based on relevance, and uses them for generating responses.
+This project allows you to extract text and tables from PDF documents, generate embeddings for both using transformer-based models, store them in Pinecone Vector Database, and provide a FastAPI-based query interface to interact with the stored embeddings. It utilizes models like `SentenceTransformer` for text embeddings, `TableTransformerForObjectDetection` for table embeddings, and combines them in a retrieval-augmented generation (RAG) approach using GPT for generating responses.
 
 ## Requirements
 
-The project requires the following libraries:
+- Python 3.7+
+- Virtual environment (optional but recommended)
+- Pinecone API Key (for Pinecone Vector Database)
+- OpenAI API Key (for GPT integration)
 
-- Python 3.x
-- Hugging Face `transformers` library
-- PyTorch
-- FastAPI
-- `gpt_tokenizer` and `gpt_model` (ensure correct GPT model is initialized)
-- The following helper functions need to be implemented in your project:
-  - `generate_table_embeddings_with_transformer`
-  - `generate_text_embeddings`
-  - `multimodal_rag_query`
-  - `text_to_pdf`
-  - `adjust_table_embeddings`
-
-### Installation
-
-You can install the necessary dependencies with pip:
+### Required Libraries
+You can install all the required libraries using pip. Run the following command:
 
 ```bash
-pip install requirements.txt
-
-
-start the uvicorn server and use the API
+pip install -r requirements.txt
+uvicorn tech:app --reload //run uvicorn server
